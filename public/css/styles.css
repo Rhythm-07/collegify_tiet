@@ -1,0 +1,20 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+.button:hover {
+    background-color: #2d3748;
+}
+.button:hover.scale {
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+}

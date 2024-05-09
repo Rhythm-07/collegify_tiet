@@ -1,0 +1,61 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collegify</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        /* Additional custom styles */
+        /* You can add more custom styles here */
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Collegify</a>
+            <nav>
+                <% if (name) { %>
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="hover:text-gray-400">Welcome, <%= name %></a></li>
+                        <li><a href="/logout" class="hover:text-gray-400">Logout</a></li>
+                        
+                    </ul>
+                <% } else { %>
+                    <ul class="flex space-x-4">
+                        <li><a href="/login" class="hover:text-gray-400">Login</a></li>
+                        <li><a href="/signup" class="hover:text-gray-400">Signup</a></li>
+                        
+                    </ul>
+                <% } %>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Collegify</h1>
+            <p class="text-lg text-gray-600">Your one-stop destination for all things related to your college life.</p>
+        </section>
+        <section class="container mx-auto px-4 py-8">
+            <img src="/college2.jpeg" alt="Big Image" class="mx-auto mb-8">
+        </section>
+        <section class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Explore</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="/placement" class="but bg-gray-800 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg block text-center">Placement Data</a>
+                <a href="/professors" class="but bg-gray-800 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg block text-center">Professors</a>
+                <a href="/study-material" class="but bg-gray-800 hover:bg-yellow-600 text-white font-bold py-4 px-6 rounded-lg block text-center">Study Material</a>
+                <a href="/society-events" class="but bg-gray-800 hover:bg-purple-600 text-white font-bold py-4 px-6 rounded-lg block text-center">Society Events</a>
+                <a href="/college-map" class="but bg-gray-800 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg block text-center">College Map</a>
+                <a href="/hostel-details" class="but bg-gray-800 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-lg block text-center">Hostel Details</a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p>&copy; 2024 Collegify</p>
+        <p>Submitted by Team 6eyes</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- views/study-material.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material - Collegify</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-bold">Study Material</h1>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-8">
+            <div class="mb-4">
+                <label for="year" class="block text-lg font-semibold mb-2">Select Year:</label>
+                <select name="year" id="year" class="block w-full bg-white border border-gray-300 rounded-md py-2 px-4">
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3</option>
+                    <option value="4">Year 4</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="branch" class="block text-lg font-semibold mb-2">Select Branch:</label>
+                <select name="branch" id="branch"
+                    class="block w-full bg-white border border-gray-300 rounded-md py-2 px-4">
+                    <option value="CS">Computer Science</option>
+                    <option value="EE">Electrical Engineering</option>
+                    <option value="ECE">Electronics & Communication Engineering</option>
+                    <!-- Add more branches as needed -->
+                </select>
+            </div>
+            <button id="fetchStudyMaterial"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Show Study
+                Material</button>
+        </section>
+        <section id="study-material-list" class="mb-8">
+            <!-- Study material links will be displayed here -->
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p>&copy; 2024 Collegify</p>
+        <p><a href="/privacy-policy" class="text-white">Privacy Policy</a> | <a href="/terms-of-service"
+                class="text-white">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('fetchStudyMaterial').addEventListener('click', async function () {
+            const year = document.getElementById('year').value;
+            const branch = document.getElementById('branch').value;
+
+            try {
+                const response = await fetch('/study-material', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ year, branch })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const studyMaterialLinks = await response.json();
+                console.log(studyMaterialLinks);
+                const studyMaterialList = document.getElementById('study-material-list');
+
+                studyMaterialList.innerHTML = '';
+                studyMaterialLinks.forEach(link => {
+                    const anchor = document.createElement('a');
+                    const pdfimg = document.createElement('img');
+                    pdfimg.setAttribute('src', '/pdf.png');
+                    pdfimg.setAttribute('alt', 'PDF'); // Add alt attribute for accessibility
+                    pdfimg.style.width = '26px'; // Adjust image width as needed
+
+                    anchor.setAttribute('href', link.url);
+                    anchor.setAttribute('target', '_blank'); // Add target="_blank"
+                    anchor.textContent = link.fileName; // Add PDF: before the file name
+                    anchor.style.textDecoration = 'none'; // Remove underline from the anchor text
+
+                    const listItem = document.createElement('div'); // Change list item to div
+                    listItem.classList.add('file'); // Add class "file"
+                    listItem.style.display = 'flex'; // Make div flex container
+                    listItem.style.alignItems = 'center'; // Align items vertically center
+                    listItem.style.marginBottom = '8px'; // Add margin bottom for spacing
+                    pdfimg.style.marginRight = '5px'; // Add margin-right for spacing between image and text
+
+                    listItem.appendChild(pdfimg);
+                    listItem.appendChild(anchor);
+
+                    studyMaterialList.appendChild(listItem);
+                });
+
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

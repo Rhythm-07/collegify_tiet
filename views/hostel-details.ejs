@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Details - Collegify</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-bold">Hostel Details</h1>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4">Wardens and Caretakers</h2>
+            <ul>
+                <% hostels.forEach(hostel => { %>
+                    <li class="bg-white shadow-md rounded-lg p-4 mb-4">
+                        <h3 class="text-lg font-semibold">Hostel <%= hostel.hostel %></h3>
+                        <p class="text-gray-600">Warden: <%= hostel.warden_name %> (Mobile: <%= hostel.warden_mobile %>)</p>
+                        <p class="text-gray-600">Caretaker: <%= hostel.caretaker %> (Mobile: <%= hostel.caretaker_mobile %>)</p>
+                        <p class="text-gray-600">Proctor: <%= hostel.proctor %> (Mobile: <%= hostel.proctor_mobile %>)</p>
+                    </li>
+                <% }); %>
+                <!-- Add more hostels as needed -->
+            </ul>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Collegify</p>
+            <p><a href="/privacy-policy" class="text-white">Privacy Policy</a> | <a href="/terms-of-service" class="text-white">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

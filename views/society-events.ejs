@@ -1,0 +1,36 @@
+<!-- views/society-events.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Events - Collegify</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-bold">Society Events</h1>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4">Upcoming Events</h2>
+            <ul>
+                <% societies.forEach(society => { %>
+                    <li class="bg-white shadow-md rounded-lg p-4 mb-4">
+                        <h3 class="text-lg font-semibold">Society: <%= society.society %></h3>
+                        <p class="text-gray-600">Upcoming Event: <%= society.upcoming_events %> (Date: <%= society.date %>)</p>
+                        <p class="text-gray-600">Description: <%= society.description %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p>&copy; 2024 Collegify</p>
+        <p><a href="/privacy-policy" class="text-white">Privacy Policy</a> | <a href="/terms-of-service" class="text-white">Terms of Service</a></p>
+    </footer>
+</body>
+</html>
